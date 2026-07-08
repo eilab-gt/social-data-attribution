@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>targeted-random-unlearning — SocialTDA animation dev page</title>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="../../static/css/animations.css">
+</head>
+<body class="stda-dev">
+  <div class="stda-dev-wrap">
+    <div class="stda-dev-chrome">
+      <h1>Influence-targeted vs random unlearning — dev harness</h1>
+      <p class="stda-dev-meta">
+        Brief: <code>docs/research-animations/agent-handoff/briefs/12_targeted_vs_random_unlearning.md</code>
+        · QA: <code>docs/research-animations/qa/targeted-random-unlearning_qa.md</code>
+      </p>
+      <div class="stda-dev-toolbar" id="toolbar">
+        <label><input type="checkbox" data-param="review"> review mode (hide public identifiers)</label>
+        <label><input type="checkbox" data-param="reduced"> force reduced motion (static frame)</label>
+        <label><input type="checkbox" data-param="end"> final frame (poster state)</label>
+        <label><input type="checkbox" data-param="loop"> loop</label>
+        <label><input type="checkbox" data-param="square"> square-crop guide</label>
+        <label><input type="checkbox" data-param="noautoplay"> start paused</label>
+      </div>
+    </div>
+
+    <div id="anim"></div>
+
+    <div class="stda-dev-note stda-dev-chrome">
+      <strong>Run locally</strong> (from the repo root):
+      <code>python3 -m http.server 8000</code> →
+      <code>http://localhost:8000/public/animations/dev/targeted-random-unlearning.html</code><br>
+      <strong>Deterministic poster state:</strong> add <code>?end=1</code> (or press “final frame”).
+      The reduced-motion / no-GSAP fallback shows the same frame.<br>
+      <strong>Capture views:</strong>
+      <code>?bare=1&amp;end=1</code> at a 1920×1080 window for the 16:9 poster;
+      <code>?bare=1&amp;end=1&amp;square=1</code> at 1080×1080 for the square crop.
+      Exact headless commands are documented in the QA note.
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"
+          integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt"
+          crossorigin="anonymous"></script>
+  <script type="module">
+    import { buildTargetedRandomUnlearningAnimation } from "../../static/js/animations/targeted-random-unlearning-animation.js";
+
+    const params = new URLSearchParams(window.location.search);
+    const on = (k) => params.get(k) === "1";
+    const bare = on("bare");
+
+    if (bare) {
+      document.documentElement.classList.add("stda-bare");
+      if (on("square")) document.documentElement.classList.add("stda-square");
+    }
+
+    let anim = null;
+    function build() {
+      if (anim) anim.destroy();
+      anim = buildTargetedRandomUnlearningAnimation(document.getElementById("anim"), {
+        reviewMode: on("review"),
+        // reduced=1 forces the static frame; motion=1 forces animation even
+        // where the environment reports prefers-reduced-motion (headless
+        // Chrome does, which video capture must override).
+        reducedMotion: on("reduced") ? true : (on("motion") ? false : null),
+        end: on("end"),
+        loop: on("loop"),
+        autoplay: !on("noautoplay") && !on("end"),
+        controls: !bare,
+        showSquareGuide: on("square") && !bare,
+        stage: params.get("stage")
+      });
+      window.stdaAnim = anim; // console/debug handle for capture scripts
+    }
+    build();
+
+    document.querySelectorAll("#toolbar input[data-param]").forEach((box) => {
+      box.checked = on(box.dataset.param);
+      box.addEventListener("change", () => {
+        if (box.checked) params.set(box.dataset.param, "1");
+        else params.delete(box.dataset.param);
+        history.replaceState(null, "", "?" + params.toString());
+        build();
+      });
+    });
+  </script>
+</body>
+</html>
