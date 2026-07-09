@@ -7,18 +7,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Capability Provenance in Language Models: A Case Study in Social Reasoning</title>
 
-  <link rel="canonical" href="https://eilab.gatech.edu/">
+  <link rel="canonical" href="https://eilab.gatech.edu/social-data-attribution/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Capability Provenance in Language Models: A Case Study in Social Reasoning">
   <meta property="og:description" content="Training-data attribution maps which regions of the Dolma3 pretraining corpus support social versus STEM reasoning in OLMo3-7B, validated with targeted unlearning.">
-  <meta property="og:url" content="https://eilab.gatech.edu/">
-  <meta property="og:image" content="https://eilab.gatech.edu/static/images/og-card.png">
+  <meta property="og:url" content="https://eilab.gatech.edu/social-data-attribution/">
+  <meta property="og:image" content="https://eilab.gatech.edu/social-data-attribution/static/images/og-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Capability Provenance in Language Models: A Case Study in Social Reasoning">
   <meta name="twitter:description" content="Training-data attribution maps which regions of the Dolma3 pretraining corpus support social versus STEM reasoning in OLMo3-7B, validated with targeted unlearning.">
-  <meta name="twitter:image" content="https://eilab.gatech.edu/static/images/og-card.png">
+  <meta name="twitter:image" content="https://eilab.gatech.edu/social-data-attribution/static/images/og-card.png">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -39,7 +39,7 @@
       { "@type": "Person", "name": "Stella Biderman" },
       { "@type": "Person", "name": "Mark Riedl" }
     ],
-    "url": "https://eilab.gatech.edu/",
+    "url": "https://eilab.gatech.edu/social-data-attribution/",
     "sameAs": [
       "https://arxiv.org/abs/2606.19625",
       "https://github.com/eilab-gt/social-data-attribution"
@@ -127,7 +127,10 @@
   <div class="paper-shell paper-shell-wide hero-teaser" data-aos="fade-up" data-aos-delay="120">
     <div class="fig1 hero-fig" data-fig1>
       <figure class="image fig1-fallback">
-        <img src="./static/images/figures/fig-overview-revised.png" alt="Four-panel capability provenance pipeline: corpus construction bins Dolma3, training-data attribution scores benchmark probes, a signed bin-level influence map, and unlearning validation against random in-topic controls.">
+        <picture>
+          <source srcset="./static/images/figures/fig-overview-revised.webp" type="image/webp">
+          <img src="./static/images/figures/fig-overview-revised.png" alt="Four-panel capability provenance pipeline: corpus construction bins Dolma3, training-data attribution scores benchmark probes, a signed bin-level influence map, and unlearning validation against random in-topic controls.">
+        </picture>
       </figure>
     </div>
     <p class="figure-note">
@@ -525,19 +528,31 @@
 
       <div class="evidence-grid">
         <figure class="paper-figure" data-aos="fade-up">
-          <img loading="lazy" decoding="async" src="./static/images/figures/fig_rq1_format_concentration.png" alt="Format and topic concentration for benchmark influence profiles">
+          <picture>
+            <source srcset="./static/images/figures/fig_rq1_format_concentration.webp" type="image/webp">
+            <img loading="lazy" decoding="async" src="./static/images/figures/fig_rq1_format_concentration.png" alt="Format and topic concentration for benchmark influence profiles">
+          </picture>
           <figcaption>Format and topic marginals show SocialIQA separating from the social-knowledge and STEM tasks.</figcaption>
         </figure>
         <figure class="paper-figure" data-aos="fade-up">
-          <img loading="lazy" decoding="async" src="./static/images/figures/fig_influence_signed_2x2.png" alt="Signed influence map across the 2 by 2 benchmark design">
+          <picture>
+            <source srcset="./static/images/figures/fig_influence_signed_2x2.webp" type="image/webp">
+            <img loading="lazy" decoding="async" src="./static/images/figures/fig_influence_signed_2x2.png" alt="Signed influence map across the 2 by 2 benchmark design">
+          </picture>
           <figcaption>Signed influence across the 2 by 2 benchmark design highlights capability-specific corpus regions.</figcaption>
         </figure>
         <figure class="paper-figure" data-aos="fade-up">
-          <img loading="lazy" decoding="async" src="./static/images/figures/unlearning_paired.png" alt="Paired unlearning validation results">
+          <picture>
+            <source srcset="./static/images/figures/unlearning_paired.webp" type="image/webp">
+            <img loading="lazy" decoding="async" src="./static/images/figures/unlearning_paired.png" alt="Paired unlearning validation results">
+          </picture>
           <figcaption>Influence-targeted unlearning is compared against matched random controls.</figcaption>
         </figure>
         <figure class="paper-figure" data-aos="fade-up">
-          <img loading="lazy" decoding="async" src="./static/images/figures/fig_lex_cluster_composition.png" alt="Lexical cluster composition for high-influence SocialIQA bins">
+          <picture>
+            <source srcset="./static/images/figures/fig_lex_cluster_composition.webp" type="image/webp">
+            <img loading="lazy" decoding="async" src="./static/images/figures/fig_lex_cluster_composition.png" alt="Lexical cluster composition for high-influence SocialIQA bins">
+          </picture>
           <figcaption>High-influence SocialIQA bins contain both conversational and documentation-like regimes.</figcaption>
         </figure>
       </div>
@@ -604,17 +619,21 @@
           <span class="resource-icon"><i class="fab fa-github"></i></span>
           <span><strong>Project repository</strong><small>Attribution, sampling, and unlearning pipeline.</small></span>
         </a>
-        <div class="resource-item" aria-label="Artifacts coming soon">
+        <div class="resource-item resource-pending">
           <span class="resource-icon"><i class="fas fa-database"></i></span>
-          <span><strong>Sampling manifests and influence matrix</strong><small>The 576&times;4 bin-level influence matrix and sampling manifests; public release planned alongside review.</small></span>
+          <span><strong>Sampling manifests and influence matrix <span class="pending-badge">Pending</span></strong><small>The 576&times;4 bin-level influence matrix and sampling manifests; public release planned alongside the camera-ready release.</small></span>
         </div>
-        <div class="resource-item">
+        <div class="resource-item resource-pending">
           <span class="resource-icon"><i class="fas fa-table-cells"></i></span>
-          <span><strong>Cross-probe influence statistics</strong><small>Aggregate bin-level lexical and influence profiles shared across the held-out social probes.</small></span>
+          <span><strong>Cross-probe influence statistics <span class="pending-badge">Pending</span></strong><small>Aggregate bin-level lexical and influence profiles shared across the held-out social probes.</small></span>
         </div>
-        <div class="resource-item">
+        <div class="resource-item resource-pending">
           <span class="resource-icon"><i class="fas fa-eraser"></i></span>
-          <span><strong>Unlearning checkpoints</strong><small>LoRA adapters and evaluation outputs for causal validation.</small></span>
+          <span><strong>Unlearning checkpoints <span class="pending-badge">Pending</span></strong><small>LoRA adapters and evaluation outputs for causal validation.</small></span>
+        </div>
+        <div class="resource-item resource-pending">
+          <span class="resource-icon"><i class="fas fa-cubes"></i></span>
+          <span><strong>Hugging Face <span class="pending-badge">Pending</span></strong><small>Influence matrices and aggregate artifacts on the Hub, available with the public release.</small></span>
         </div>
         <p class="resource-note"><small>Releases are aggregate, bin-level artifacts &mdash; document-level attribution scores are deliberately not released.</small></p>
       </div>
@@ -629,11 +648,12 @@
       </div>
       <div class="bibtex-wrap" data-aos="fade-up">
         <button class="bibtex-copy" data-copy-bibtex type="button">Copy BibTeX</button>
-        <pre class="bibtex"><code id="bibtex-code">@misc{matlin2026doessocialreasoningcome,
+        <pre class="bibtex"><code id="bibtex-code">@inproceedings{matlin2026doessocialreasoningcome,
   title         = {Capability Provenance in Language Models: A Case Study in Social Reasoning},
   author        = {Glenn Matlin and Chandreyi Chakraborty and Saehee Eom and Mika Okamoto and
                    Rayan Castilla and Louis Jaburi and Alvin Deng and Taywon Min and
                    Lucia Quirke and Stella Biderman and Mark Riedl},
+  booktitle     = {Proceedings of the Conference on Language Modeling (COLM 2026)},
   year          = {2026},
   eprint        = {2606.19625},
   archivePrefix = {arXiv},

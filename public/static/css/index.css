@@ -764,6 +764,34 @@ img {
   line-height: 1.45;
 }
 
+/* Pending (not-yet-released) resources: muted, no hover, explicit badge. */
+.resource-item.resource-pending {
+  background: rgba(0, 0, 0, 0.015);
+}
+
+.resource-item.resource-pending .resource-icon {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--muted);
+}
+
+.resource-item.resource-pending strong {
+  color: var(--muted);
+}
+
+.resource-pending .pending-badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  color: var(--muted);
+  background: rgba(0, 0, 0, 0.06);
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+}
+
 .citation-section {
   background: var(--paper-bg);
 }
