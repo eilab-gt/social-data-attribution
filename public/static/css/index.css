@@ -7,6 +7,7 @@
   --paper-bg: #f7f5ef;
   --paper-warm: #fffdf8;
   --paper-cool: #eef4f5;
+  --surface-soft: #f3efe4;
   --ink: #171717;
   --muted: #62636a;
   --faint: #8a8790;
@@ -18,6 +19,16 @@
 
 * {
   box-sizing: border-box;
+}
+
+/* Keyboard focus ring only (mouse clicks don't trigger :focus-visible). */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+.navbar-burger:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 html {
@@ -169,6 +180,13 @@ img {
   letter-spacing: 0.05em;
   white-space: nowrap;
   vertical-align: baseline;
+  /* Render affiliation emoji with the platform's color emoji font and force
+     emoji (not text-dingbat) presentation. Native emoji fonts cover these
+     codepoints on macOS, iOS, modern Windows, and modern Android. */
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Google Sans",
+               "Noto Sans", Arial, sans-serif;
+  font-variant-emoji: emoji;
+  -webkit-font-variant-emoji: emoji;
 }
 
 .publication-authors a {
@@ -180,6 +198,13 @@ img {
   margin: 0.8rem auto 0;
   color: var(--muted);
   font-size: 0.95rem;
+}
+
+.publication-affiliations span[aria-hidden="true"] {
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Google Sans",
+               "Noto Sans", Arial, sans-serif;
+  font-variant-emoji: emoji;
+  -webkit-font-variant-emoji: emoji;
 }
 
 .publication-links {
@@ -242,7 +267,7 @@ img {
 }
 
 .contribution-band {
-  background: var(--surface-soft, #f8fafc);
+  background: var(--surface-soft);
   border-bottom: 1px solid var(--hairline);
 }
 
@@ -466,7 +491,7 @@ img {
   margin: 0;
   padding: 0.85rem 1rem;
   border-left: 3px solid var(--hairline);
-  background: var(--surface-soft, #f8fafc);
+  background: var(--surface-soft);
   border-radius: 0 6px 6px 0;
   color: var(--ink);
   font-size: 0.92rem;
@@ -586,7 +611,7 @@ img {
 
 /* ================= Results across models ================= */
 .models-section {
-  background: var(--surface-soft, #f8fafc);
+  background: var(--surface-soft);
 }
 
 .models-wrap {
@@ -614,8 +639,6 @@ img {
   width: 100%;
   border-collapse: collapse;
   background: #ffffff;
-  border-radius: 10px;
-  overflow: hidden;
   font-variant-numeric: tabular-nums;
 }
 
@@ -651,7 +674,15 @@ img {
   color: var(--muted);
   font-weight: 800;
   font-size: 0.88rem;
-  white-space: nowrap;
+  white-space: normal;
+}
+
+.models-table .metric-cell .detail {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 500;
 }
 
 .models-table .value-cell {
@@ -1071,6 +1102,19 @@ img {
   transform: translateY(0);
 }
 
+/* Visually hidden, available to screen readers. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .limitations-list {
   margin: 0 0 1.1rem;
   padding-left: 1.15rem;
@@ -1107,4 +1151,10 @@ img {
 
 .bibtex-copy:hover {
   border-color: #171717;
+}
+
+.bibtex-copy.is-copied {
+  background: var(--accent-green);
+  border-color: var(--accent-green);
+  color: #fff;
 }

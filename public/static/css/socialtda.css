@@ -197,6 +197,15 @@
   display: block;
 }
 
+/* Without JS the scroll-reveal cells would stay faded or invisible.
+   Force them to their final visible state so the page is readable. */
+.no-js .tax-cell,
+.no-js .contrast-cell,
+.no-js .cluster span {
+  opacity: 1;
+  transform: none;
+}
+
 /* ================= Taxonomy animation ================= */
 .taxonomy-viz {
   position: relative;

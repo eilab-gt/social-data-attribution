@@ -218,12 +218,12 @@ import { SIGNATURE_BIN, BENCHMARKS, UNLEARNING, MODELS } from "./animations/soci
     }
 
     // Header row.
-    var headHtml = "<tr><th></th>";
+    var headHtml = '<tr><th scope="col">Metric</th>';
     MODELS.forEach(function (m) {
       var badge = m.status === "done"
         ? '<span class="status-badge status-done">Complete</span>'
         : '<span class="status-badge status-pending">In progress</span>';
-      headHtml += '<th>' + esc(m.name) + '<span class="corpus">' + esc(m.corpus) + '</span>' + badge + '</th>';
+      headHtml += '<th scope="col">' + esc(m.name) + '<span class="corpus">' + esc(m.corpus) + '</span>' + badge + '</th>';
     });
     headHtml += "</tr>";
     head.innerHTML = headHtml;
@@ -266,8 +266,8 @@ import { SIGNATURE_BIN, BENCHMARKS, UNLEARNING, MODELS } from "./animations/soci
 
     var bodyHtml = "";
     rows.forEach(function (row) {
-      bodyHtml += '<tr><td class="metric-cell">' + esc(row.label) +
-        '<span class="detail">' + esc(row.detail) + '</span></td>';
+      bodyHtml += '<tr><th scope="row" class="metric-cell">' + esc(row.label) +
+        '<span class="detail">' + esc(row.detail) + '</span></th>';
       MODELS.forEach(function (m) {
         var custom = row.render(m);
         if (custom !== null) {
@@ -293,7 +293,13 @@ import { SIGNATURE_BIN, BENCHMARKS, UNLEARNING, MODELS } from "./animations/soci
       navigator.clipboard.writeText(code.textContent).then(function () {
         var original = button.textContent;
         button.textContent = "Copied";
-        window.setTimeout(function () { button.textContent = original; }, 1600);
+        button.classList.add("is-copied");
+        button.setAttribute("aria-pressed", "true");
+        window.setTimeout(function () {
+          button.textContent = original;
+          button.classList.remove("is-copied");
+          button.setAttribute("aria-pressed", "false");
+        }, 1600);
       });
     });
   }

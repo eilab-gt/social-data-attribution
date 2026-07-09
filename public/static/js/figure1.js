@@ -40,7 +40,7 @@
     rows: [
       { label: "Lit. × Cust. Support", v: [16.0, -7.31, -0.45, -5.75], sig: 0 },
       { label: "Social Life × Q&A", v: [1.90, -0.06, -0.78, -0.46] },
-      { label: "Home × Creative", v: [1.29, -0.63, -0.34, -0.19] },
+      { label: "Home × Creative", v: [1.29, -0.63, -0.34, -0.12] },
       { label: "Politics × Docs", v: [0.41, 6.86, 1.59, 5.56] }
     ]
   };

@@ -48,13 +48,15 @@
   </script>
 
   <link rel="icon" href="./static/images/favicon.svg" type="image/svg+xml">
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans:wght@400;600;800&family=Castoro:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
-  <link rel="stylesheet" href="./static/css/index.css?v=20260704">
-  <link rel="stylesheet" href="./static/css/socialtda.css">
+  <link rel="stylesheet" href="./static/css/index.css?v=20260709">
+  <link rel="stylesheet" href="./static/css/socialtda.css?v=20260709">
 </head>
 <body>
 
@@ -79,9 +81,9 @@
         <a class="navbar-item" href="#method">Method</a>
         <a class="navbar-item" href="#data">Data</a>
         <a class="navbar-item" href="#findings">Findings</a>
-        <a class="navbar-item" href="#results">Findings in figures</a>
-        <a class="navbar-item" href="#models">Across models</a>
-        <a class="navbar-item" href="#limitations">Limitations</a>
+        <a class="navbar-item" href="#results">Figures</a>
+        <a class="navbar-item" href="#models">Models</a>
+        <a class="navbar-item" href="#limitations">Limits</a>
         <a class="navbar-item" href="#resources">Resources</a>
         <a class="navbar-item" href="#BibTeX">Citation</a>
       </div>
@@ -129,7 +131,7 @@
       <figure class="image fig1-fallback">
         <picture>
           <source srcset="./static/images/figures/fig-overview-revised.webp" type="image/webp">
-          <img src="./static/images/figures/fig-overview-revised.png" alt="Four-panel capability provenance pipeline: corpus construction bins Dolma3, training-data attribution scores benchmark probes, a signed bin-level influence map, and unlearning validation against random in-topic controls.">
+          <img src="./static/images/figures/fig-overview-revised.png" width="1672" height="753" fetchpriority="high" alt="Four-panel capability provenance pipeline: corpus construction bins Dolma3, training-data attribution scores benchmark probes, a signed bin-level influence map, and unlearning validation against random in-topic controls.">
         </picture>
       </figure>
     </div>
@@ -308,7 +310,7 @@
         <article class="finding-row" data-aos="fade-up">
           <span class="finding-number">01</span>
           <div>
-            <h3>Social reasoning has a different data signature than the other three tasks we tested.</h3>
+            <h3>Social reasoning draws on corpus regions unlike any other task we tested.</h3>
             <p class="finding-explain">
               We compared how each benchmark draws on the 576 corpus bins. Social reasoning stands
               apart: the regions it relies on look unlike the regions the STEM and social-knowledge
@@ -395,12 +397,13 @@
         <article class="finding-row" data-aos="fade-up">
           <span class="finding-number">04</span>
           <div>
-            <h3>Unlearning the regions attribution flagged selectively damages social reasoning, confirming the pattern causally. The effect is clearest for SocialIQA.</h3>
+            <h3>Unlearning the regions attribution flagged selectively damages social reasoning.</h3>
             <p class="finding-explain">
-              Correlation alone does not prove the flagged regions matter. So we tested it: we
-              unlearned the high-influence bins and compared the damage to unlearning matched random
-              bins from the same topics. The influence-targeted forgetting hit social reasoning harder
-              than the random controls. For the other tasks the effect is weaker, null, or reversed.
+              Correlation alone does not prove the flagged regions matter, so we tested it causally.
+              We unlearned the high-influence bins and compared the damage to unlearning matched
+              random bins from the same topics. The influence-targeted forgetting hit social reasoning
+              harder than the random controls, most clearly for SocialIQA. For the other tasks the
+              effect is weaker, null, or reversed.
             </p>
             <div class="finding-evidence">
               <p>
@@ -505,7 +508,7 @@
 
       <article class="living-figure" data-aos="fade-up">
         <div class="living-copy">
-          <p class="mini-kicker">Lexical signature</p>
+          <p class="mini-kicker">Lexical profile</p>
           <h3>The top SocialIQA bins split into two text regimes.</h3>
           <p>
             The top 20 SocialIQA bins divide cleanly: 10 interactional formats (dialogue-heavy,
@@ -563,7 +566,7 @@
     <div class="paper-shell">
       <div class="section-heading centered" data-aos="fade-up">
         <p class="section-kicker">Results across models</p>
-        <h2>Does the signature hold beyond OLMo3?</h2>
+        <h2>Does the pattern hold beyond OLMo3?</h2>
       </div>
       <div class="models-wrap">
         <p class="models-intro">
@@ -572,14 +575,15 @@
         </p>
         <div class="models-table-wrap" data-aos="fade-up">
           <table class="models-table">
+            <caption class="sr-only">Three headline attribution results re-run across three model corpora. OLMo3-7B is complete; Comma 7B and DCLM 7B are pending.</caption>
             <thead id="models-head"></thead>
             <tbody id="models-body"></tbody>
           </table>
         </div>
         <p class="models-note">
-          Metric set is provisional and will be locked when the Comma and DCLM
-          results land. Every number traceable to the released claims data; no
-          values are imputed for pending models.
+          The metric set is provisional and will be finalized when the Comma and
+          DCLM results are available. Every number is traceable to the released
+          claims data; no values are filled in for pending models.
         </p>
       </div>
     </div>
@@ -647,7 +651,7 @@
         <h2>Cite the paper.</h2>
       </div>
       <div class="bibtex-wrap" data-aos="fade-up">
-        <button class="bibtex-copy" data-copy-bibtex type="button">Copy BibTeX</button>
+        <button class="bibtex-copy" data-copy-bibtex type="button" aria-pressed="false">Copy BibTeX</button>
         <pre class="bibtex"><code id="bibtex-code">@inproceedings{matlin2026doessocialreasoningcome,
   title         = {Capability Provenance in Language Models: A Case Study in Social Reasoning},
   author        = {Glenn Matlin and Chandreyi Chakraborty and Saehee Eom and Mika Okamoto and
@@ -681,7 +685,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script src="./static/js/figure1.js?v=20260705"></script>
-<script type="module" src="./static/js/main.js?v=20260705"></script>
+<script src="./static/js/figure1.js?v=20260709"></script>
+<script type="module" src="./static/js/main.js?v=20260709"></script>
 </body>
 </html>
