@@ -79,7 +79,7 @@
         <a class="navbar-item" href="#method">Method</a>
         <a class="navbar-item" href="#data">Data</a>
         <a class="navbar-item" href="#findings">Findings</a>
-        <a class="navbar-item" href="#results">Figures</a>
+        <a class="navbar-item" href="#results">Findings in figures</a>
         <a class="navbar-item" href="#limitations">Limitations</a>
         <a class="navbar-item" href="#resources">Resources</a>
         <a class="navbar-item" href="#BibTeX">Citation</a>
@@ -90,7 +90,7 @@
 
 <header id="top" class="paper-hero">
   <div class="paper-shell hero-copy" data-aos="fade-up">
-    <p class="eyebrow">arXiv:2606.19625 &middot; Under review at COLM 2026 &middot; OLMo3-7B / Dolma3</p>
+    <p class="eyebrow">arXiv:2606.19625 &middot; Accepted at COLM 2026 &middot; OLMo3-7B / Dolma3</p>
     <h1 class="publication-title">Where Does Social Reasoning Come From?</h1>
     <p class="publication-subtitle">Capability Provenance in Language Models</p>
 
@@ -140,12 +140,22 @@
 </header>
 
 <main id="main">
+  <section class="contribution-band" aria-label="One-sentence contribution">
+    <div class="paper-shell">
+      <p class="contribution-statement">
+        Training-data attribution shows that social reasoning and STEM reasoning
+        draw on distinct regions of the pretraining corpus. We confirm it by
+        selectively unlearning the regions that matter.
+      </p>
+    </div>
+  </section>
+
   <section class="metrics-band" aria-label="Paper summary metrics">
     <div class="paper-shell metrics-grid">
+      <div><strong>+1.60 pp</strong><span>SocialIQA unlearning damage (p &asymp; 10<sup>-5</sup>)</span></div>
       <div><strong>576</strong><span>topic-format bins</span></div>
       <div><strong>5.68M</strong><span>documents sampled</span></div>
       <div><strong>4</strong><span>contrastive benchmarks</span></div>
-      <div><strong>37K</strong><span>H200-equivalent GPU hours</span></div>
     </div>
   </section>
 
@@ -281,6 +291,7 @@
           <div><dt>Taxonomized</dt><dd>1.10B documents (~87%)</dd></div>
           <div><dt>Corpus skew</dt><dd>top-10 bins hold 27.8% of tokens</dd></div>
           <div><dt>Bin imbalance</dt><dd>largest &gt;100,000x the smallest</dd></div>
+          <div><dt>Compute</dt><dd>~37K H200-equivalent GPU hours</dd></div>
         </dl>
       </div>
     </div>
@@ -343,8 +354,8 @@
   <section id="results" class="paper-section result-lab">
     <div class="paper-shell">
       <div class="section-heading centered" data-aos="fade-up">
-        <p class="section-kicker">Living Figures</p>
-        <h2>Three claims, three compact animations.</h2>
+        <p class="section-kicker">Findings in figures</p>
+        <h2>Three claims, three compact visualizations.</h2>
       </div>
 
       <article class="living-figure" data-aos="fade-up">

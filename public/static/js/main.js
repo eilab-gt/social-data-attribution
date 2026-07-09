@@ -84,14 +84,6 @@
         fill.classList.toggle("negative", value < 0);
       }
     });
-
-    document.querySelectorAll(".unlearn-row").forEach(function (row) {
-      var social = parseFloat(row.getAttribute("data-social")) || 0;
-      var arc = parseFloat(row.getAttribute("data-arc")) || 0;
-      var max = parseFloat(row.getAttribute("data-max")) || 18;
-      row.style.setProperty("--social-width", clamp(Math.abs(social) / max * 50, 1.5, 50) + "%");
-      row.style.setProperty("--arc-width", clamp(Math.abs(arc) / max * 50, 1.5, 50) + "%");
-    });
   }
 
   function revealRows(container, selector) {
@@ -104,13 +96,13 @@
 
   function initScrollAnimations() {
     var nodes = [].slice.call(document.querySelectorAll(
-      ".taxonomy-viz, .contrast-viz, .cluster-viz, [data-bars], [data-unlearning]"
+      ".taxonomy-viz, .contrast-viz, .cluster-viz, [data-bars]"
     ));
 
     if (!("IntersectionObserver" in window)) {
       nodes.forEach(function (node) {
         node.classList.add("is-visible");
-        revealRows(node, ".bar-row, .unlearn-row");
+        revealRows(node, ".bar-row");
       });
       return;
     }
@@ -120,7 +112,7 @@
         if (!entry.isIntersecting) return;
         var node = entry.target;
         node.classList.add("is-visible");
-        revealRows(node, ".bar-row, .unlearn-row");
+        revealRows(node, ".bar-row");
         observer.unobserve(node);
       });
     }, { threshold: 0.25, rootMargin: "0px 0px -8% 0px" });
