@@ -142,7 +142,33 @@ gotchas are in the script header.
 
 ## Independent review
 
-(pending — filled in after the second-agent review)
+A second-agent review ran read-only against the brief, the claims YAML
+(`lexical:` section), CLAIM_GUARDRAILS, and the architecture conventions,
+including live headless-Chrome CTM probes across the split/loop/reduced/
+review combinations and a dedicated data-honesty assessment. It
+independently re-verified every transcribed number (all faithful; no data
+errors) and confirmed rank #1 → interactional is supported by the L×CS
+dialogic profile and safely framed (the ring lands on an unlabeled card;
+"#1 = L×CS" is never printed beside a rank number). Outcome:
+**DONE_WITH_CONCERNS — 0 blockers.**
+
+Adjudicated findings:
+
+- **Applied (major):** rank labels previously stayed legible for ~0.2 s
+  while cards began flying toward their (illustrative) islands, so a
+  frame-grab could read as a per-bin island claim (e.g. "#10 →
+  expository"). Labels now fade out *before* any card starts moving; a
+  programmatic sweep of the split window (t = 2.6–5.0 s, every 0.05 s)
+  confirms **zero** frames show a moving card carrying a visible rank
+  label. Motion exports re-rendered after the fix (the final/poster frame
+  was unchanged — labels were already hidden there).
+- **Applied (minor):** the aria label now derives every sign via
+  `spokenSigned`/`spokenSignedInt` instead of hardcoding "plus", and no
+  longer calls a delta an "average" — it reads "the interactional minus
+  expository contrast: …".
+- **Kept as-is (nit):** the expository island's document glyph is small
+  but legible; the data-module comment "social − expository" and the
+  scene's "interactional − expository" describe the same island contrast.
 
 ## Remaining caveats / TODOs
 

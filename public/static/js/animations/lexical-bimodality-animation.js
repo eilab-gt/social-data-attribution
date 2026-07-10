@@ -23,7 +23,7 @@
 
 import { BENCHMARKS, LEXICAL, PROJECT } from "./socialtda-data.js";
 import { benchmarkColor, UI_COLORS } from "./socialtda-palettes.js";
-import { svgEl, text, formatSigned, formatInt, createDocumentGlyph } from "./socialtda-svg-utils.js";
+import { svgEl, text, formatSigned, spokenSigned, formatInt, createDocumentGlyph } from "./socialtda-svg-utils.js";
 import {
   makeSeekBeat, attachBeatControls, applyInitialPosition, makeSceneApi
 } from "./socialtda-timeline-utils.js";
@@ -41,6 +41,9 @@ const TAKEAWAY = "Social reasoning support is bimodal.";
 
 function signedInt(v) {
   return (v < 0 ? "−" : "+") + formatInt(Math.abs(v));
+}
+function spokenSignedInt(v) {
+  return (v < 0 ? "minus " : "plus ") + formatInt(Math.abs(v));
 }
 
 function mulberry32(seed) {
@@ -91,15 +94,18 @@ export function buildLexicalBimodalityAnimation(container, options = {}) {
   const ariaLabel = "Animated diagram. " + socialiqa.name + "'s top-" + top20.bins +
     " high-influence bins split " + top20.interactional + " and " + top20.expository +
     " between interactional (dialogic and personal) and expository or structured formats. " +
-    "Relative to the expository island, interactional bins average " +
-    signedInt(contrast.meanWordsPerDocDelta) + " words per document, plus " +
-    contrast.mentalStatePer1kDelta + " mental-state terms per 1,000 words, dialogue z plus " +
-    contrast.dialogueZDelta.toFixed(2) + ", social z plus " + contrast.socialZDelta.toFixed(2) +
+    "The interactional minus expository contrast: " +
+    spokenSignedInt(contrast.meanWordsPerDocDelta) + " mean words per document, " +
+    spokenSigned(contrast.mentalStatePer1kDelta, 2) +
+    " mental-state terms per 1,000 words, dialogue z " +
+    spokenSigned(contrast.dialogueZDelta, 2) + ", social z " +
+    spokenSigned(contrast.socialZDelta, 2) +
     ". The signature interactional bin, Literature × Customer Support, averages " +
     profile.meanWords + " words per document, " + profile.secondPersonPer1k +
     " second-person pronouns and " + profile.mentalStatePer1k +
-    " mental-state terms per 1,000 words, dialogue z plus " + profile.dialogueZ.toFixed(2) +
-    ", social z plus " + profile.socialZ.toFixed(2) +
+    " mental-state terms per 1,000 words, dialogue z " +
+    spokenSigned(profile.dialogueZ, 2) + ", social z " +
+    spokenSigned(profile.socialZ, 2) +
     ". Social reasoning support is bimodal — not all high-influence text is conversational. " +
     "OLMo3-7B / Dolma3 setting.";
 
@@ -312,9 +318,12 @@ export function buildLexicalBimodalityAnimation(container, options = {}) {
       { x: card.dx, y: card.dy, opacity: 0 },
       { x: card.dx, y: card.dy, opacity: 1, duration: 0.35, ease: "power2.out" },
       0.9 + i * 0.05);
-    // Rank labels visible from the start of the animated run (authored hidden).
-    tl.fromTo(card.rankLabel, { opacity: 1 }, { opacity: 0, duration: 0.35 },
-      3.15 + i * 0.07);
+    /* Rank labels are visible from the start of the animated run (authored
+       hidden) and fade out BEFORE this card's flight begins, so no moving
+       card ever carries a rank — a mid-flight frame cannot be read as a
+       per-bin island claim (the assignment beyond #1 is illustrative). */
+    tl.fromTo(card.rankLabel, { opacity: 1 }, { opacity: 0, duration: 0.3 },
+      2.62 + i * 0.03);
   });
 
   // Beat 2 — the 10/10 split into two islands.
