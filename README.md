@@ -1,6 +1,6 @@
-# Where Does Social Reasoning Come From?
+# Capability Provenance in Language Models
 
-Project website for **"Where Does Social Reasoning Come From? Capability Provenance in Language Models"**.
+Project website for **"Capability Provenance in Language Models: A Case Study in Social Reasoning"**.
 
 - Website: <https://eilab.gatech.edu/social-data-attribution/>
 - Paper: <https://arxiv.org/abs/2606.19625>
@@ -18,8 +18,9 @@ Then open <http://localhost:8000>.
 
 ## Structure
 
-- `index.html` - single-page project site.
-- `static/` - CSS, JavaScript, icons, and paper figures used by the page.
+- `public/` - the single-page project site (`index.html`, CSS, JS, figures).
+- `press/` - outreach copy: BLUF/TLDR and tweet-thread drafts.
+- `docs/` - design notes and context for the site build.
 - `.github/workflows/pages.yml` - GitHub Pages deployment workflow.
 
 Website adapted from the FLaME project-page template and licensed under CC BY-SA 4.0; see `LICENSE-website.md`.
