@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="public/static/images/favicon.svg" width="56" height="56" alt="">
+  <img src="public/static/images/capabilibara.svg" width="56" height="56" alt="Capabilibara mascot">
   <h1>Capability Provenance in Language Models</h1>
   <p><em>A Case Study in Social Reasoning</em></p>
 
