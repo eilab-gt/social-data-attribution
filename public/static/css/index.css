@@ -868,6 +868,25 @@ img {
   margin: 0 0.4rem;
 }
 
+.paper-footer .footer-mark {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-self: center;
+}
+
+.paper-footer .footer-mascot {
+  width: 72px;
+  height: 72px;
+  align-self: center;
+  opacity: 0.92;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+}
+
+@media screen and (max-width: 540px) {
+  .paper-footer .footer-mascot { display: none; }
+}
+
 @media screen and (max-width: 1024px) {
   .publication-title {
     font-size: 3.85rem;
