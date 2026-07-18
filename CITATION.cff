@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this software, please cite the accompanying paper."
 title: "Capability Provenance in Language Models: A Case Study in Social Reasoning"
 type: software
-repository-code: "https://github.com/eilab-gt/social-data-attribution"
+repository-code: "https://github.com/eilab-gt/capabilibara"
 url: "https://eilab.gatech.edu/social-data-attribution/"
 abstract: >-
   Training-data attribution as an interpretable tool for capability discovery,

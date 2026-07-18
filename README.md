@@ -11,8 +11,8 @@
     <img src="https://img.shields.io/badge/code-pending%20release-8c6d1f.svg" alt="Code status: pending release">
     <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0-a93428.svg" alt="License: AGPL-3.0"></a>
     <img src="https://img.shields.io/badge/python-3.12-2f6fa8.svg" alt="Python 3.12">
-    <img src="https://img.shields.io/github/last-commit/eilab-gt/social-data-attribution?label=last%20commit" alt="Last commit">
-    <img src="https://img.shields.io/github/stars/eilab-gt/social-data-attribution?style=social" alt="Stars">
+    <img src="https://img.shields.io/github/last-commit/eilab-gt/capabilibara?label=last%20commit" alt="Last commit">
+    <img src="https://img.shields.io/github/stars/eilab-gt/capabilibara?style=social" alt="Stars">
   </p>
 
   <p>
@@ -64,7 +64,7 @@ Each package maps to a pipeline stage: **corpus construction** (`dolma/`) → **
 
 ```bash
 # clone, then install (Python 3.12, uv-managed, src/ layout)
-git clone https://github.com/eilab-gt/social-data-attribution.git
+git clone https://github.com/eilab-gt/capabilibara.git
 cd social-data-attribution
 uv sync
 
