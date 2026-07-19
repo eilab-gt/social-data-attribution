@@ -9,14 +9,14 @@
 
 export const SOURCE = {
   file: "docs/research-animations/agent-handoff/data/socialtda_claims.yaml",
-  status: "transcribed starter data (no local source PDF in repo yet)",
+  status: "values follow the canonical post-2026-06-08 ARC aggregation (maintainer decision); other benchmarks unchanged from the YAML",
   setting: "OLMo3-7B / Dolma3, stratified working set"
 };
 
 export const PROJECT = {
   title: "Capability Provenance in Language Models: A Case Study in Social Reasoning",
   shortName: "Capability Provenance",
-  publicUrl: "eilab.gatech.edu/social-data-attribution"
+  publicUrl: "eilab.gatech.edu/capabilibara"
 };
 
 export const TAXONOMY = { topics: 24, formats: 24, bins: 576 };
@@ -43,28 +43,29 @@ export const INFLUENCE_METRIC = {
   nearZero: "weak or neutral influence under this metric"
 };
 
-/* influence_values.selected_bins_panel — signed within-benchmark z-scores. */
+/* influence_values.selected_bins_panel — signed within-benchmark z-scores.
+   ARC-Challenge values use the canonical post-2026-06-08 aggregation. */
 export const SELECTED_BINS_PANEL = [
   {
     bin: "Literature × Customer Support",
-    values: { socialiqa: 16.0, mmlu_social_sciences: -7.31, arc_challenge: -0.45, mmlu_stem: -5.75 }
+    values: { socialiqa: 16.0, mmlu_social_sciences: -7.31, arc_challenge: -1.92, mmlu_stem: -5.75 }
   },
   {
     bin: "Social Life × Q&A Forum",
-    values: { socialiqa: 1.9, mmlu_social_sciences: -0.06, arc_challenge: -0.78, mmlu_stem: -0.46 }
+    values: { socialiqa: 1.9, mmlu_social_sciences: -0.06, arc_challenge: -0.75, mmlu_stem: -0.46 }
   },
   {
     bin: "Home & Hobbies × Creative Writing",
-    values: { socialiqa: 1.29, mmlu_social_sciences: -0.63, arc_challenge: -0.34, mmlu_stem: -0.12 }
+    values: { socialiqa: 1.29, mmlu_social_sciences: -0.63, arc_challenge: 0.99, mmlu_stem: -0.12 }
   },
   {
     bin: "Politics × Documentation",
-    values: { socialiqa: 0.41, mmlu_social_sciences: 6.86, arc_challenge: 1.59, mmlu_stem: 5.56 }
+    values: { socialiqa: 0.41, mmlu_social_sciences: 6.86, arc_challenge: 5.59, mmlu_stem: 5.56 }
   }
 ];
 
 /* SocialIQA's extreme positive bin: +16.0 on SocialIQA, flips negative for
-   both MMLU benchmarks, near flat for ARC-Challenge. */
+   both MMLU benchmarks, suppressive for ARC-Challenge. */
 export const SIGNATURE_BIN = SELECTED_BINS_PANEL[0];
 
 /* lexical — SocialIQA's top-influence bins split between interactional and
@@ -146,10 +147,10 @@ export const MODELS = [
     name: "OLMo3-7B",
     corpus: "Dolma3",
     status: "done",
-    socialiqaCorrelation: { range: [0.06, 0.22], note: "vs the other three tasks (r = 0.53\u20130.86 among themselves)" },
+    socialiqaCorrelation: { range: [0.06, 0.22], note: "vs the other three tasks (r = 0.76–0.86 among themselves)" },
     signatureBin: {
-      label: "Literature \u00d7 Customer Support",
-      values: { socialiqa: 16.0, mmlu_social_sciences: -7.31, arc_challenge: -0.45, mmlu_stem: -5.75 }
+      label: "Literature × Customer Support",
+      values: { socialiqa: 16.0, mmlu_social_sciences: -7.31, arc_challenge: -1.92, mmlu_stem: -5.75 }
     },
     socialiqaUnlearning: { pp: 1.60, wilcoxonPBH: "1.0e-5" }
   },

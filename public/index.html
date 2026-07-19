@@ -7,18 +7,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Capability Provenance in Language Models: A Case Study in Social Reasoning</title>
 
-  <link rel="canonical" href="https://eilab.gatech.edu/social-data-attribution/">
+  <link rel="canonical" href="https://eilab.gatech.edu/capabilibara/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Capability Provenance in Language Models: A Case Study in Social Reasoning">
   <meta property="og:description" content="Training-data attribution maps which regions of the Dolma3 pretraining corpus support social versus STEM reasoning in OLMo3-7B, validated with targeted unlearning.">
-  <meta property="og:url" content="https://eilab.gatech.edu/social-data-attribution/">
-  <meta property="og:image" content="https://eilab.gatech.edu/social-data-attribution/static/images/og-card.png">
+  <meta property="og:url" content="https://eilab.gatech.edu/capabilibara/">
+  <meta property="og:image" content="https://eilab.gatech.edu/capabilibara/static/images/og-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Capability Provenance in Language Models: A Case Study in Social Reasoning">
   <meta name="twitter:description" content="Training-data attribution maps which regions of the Dolma3 pretraining corpus support social versus STEM reasoning in OLMo3-7B, validated with targeted unlearning.">
-  <meta name="twitter:image" content="https://eilab.gatech.edu/social-data-attribution/static/images/og-card.png">
+  <meta name="twitter:image" content="https://eilab.gatech.edu/capabilibara/static/images/og-card.png">
   <meta name="citation_title" content="Capability Provenance in Language Models: A Case Study in Social Reasoning">
   <meta name="citation_author" content="Glenn Matlin">
   <meta name="citation_author" content="Chandreyi Chakraborty">
@@ -55,7 +55,7 @@
       { "@type": "Person", "name": "Stella Biderman" },
       { "@type": "Person", "name": "Mark Riedl" }
     ],
-    "url": "https://eilab.gatech.edu/social-data-attribution/",
+    "url": "https://eilab.gatech.edu/capabilibara/",
     "sameAs": [
       "https://arxiv.org/abs/2606.19625",
       "https://github.com/eilab-gt/capabilibara"
@@ -75,6 +75,7 @@
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
   <link rel="stylesheet" href="./static/css/index.css?v=20260718">
   <link rel="stylesheet" href="./static/css/figures.css?v=20260718">
+  <noscript><style>[data-aos]{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
 
@@ -165,8 +166,9 @@
     <div class="paper-shell">
       <p class="contribution-statement">
         Training-data attribution shows that social reasoning and STEM reasoning
-        draw on distinct regions of the pretraining corpus. We confirm it by
-        selectively unlearning the regions that matter.
+        draw on distinct regions of the pretraining corpus. Unlearning the
+        flagged regions damages the matching benchmark more than random
+        controls &mdash; causal evidence, strongest for social reasoning.
       </p>
     </div>
   </section>
@@ -254,6 +256,7 @@
           <div class="tax-grid-wrap">
             <div class="tax-axis tax-axis-x">Formats</div>
             <div class="tax-grid" data-tax-grid aria-label="24 by 24 topic-format taxonomy grid"></div>
+            <noscript><p class="tax-note">The interactive 24 &times; 24 grid needs JavaScript; the study crosses 24 topics with 24 formats into 576 bins.</p></noscript>
           </div>
           <div class="tax-labels">
             <span>Literature &times; Customer Support</span>
@@ -352,13 +355,13 @@
               <p>
                 SocialIQA's 576-bin influence profile correlates with each comparison benchmark at
                 r &le; 0.22, while the other three tasks correlate among themselves at
-                r = 0.53&ndash;0.86 (full matrix, n = 576 bins).
+                r = 0.76&ndash;0.86 (full matrix, n = 576 bins).
               </p>
               <dl>
                 <div><dt>SocialIQA vs MMLU Social Sciences</dt><dd>r = 0.06</dd></div>
                 <div><dt>SocialIQA vs ARC-Challenge</dt><dd>r = 0.22</dd></div>
                 <div><dt>SocialIQA vs MMLU STEM</dt><dd>r = 0.09</dd></div>
-                <div><dt>Other three, pairwise range</dt><dd>r = 0.53&ndash;0.86</dd></div>
+                <div><dt>Other three, pairwise range</dt><dd>r = 0.76&ndash;0.86</dd></div>
               </dl>
             </div>
           </div>
@@ -367,12 +370,12 @@
         <article class="finding-row" data-aos="fade-up">
           <span class="finding-number">02</span>
           <div>
-            <h3>One corpus region, Literature &times; Customer Support, strongly supports social reasoning while suppressing the STEM tasks.</h3>
+            <h3>One corpus region, Literature &times; Customer Support, strongly supports social reasoning while suppressing the other three tasks.</h3>
             <p class="finding-explain">
               Influence is signed, so a single bin can register as supportive for one benchmark and
               suppressive for another. Literature &times; Customer Support is the
-              extreme case: the most positive bin in the corpus for SocialIQA, and among the most
-              negative for the two MMLU tasks.
+              extreme case: the most positive bin in the corpus for SocialIQA, and negative for
+              all three comparison tasks.
             </p>
             <div class="finding-evidence">
               <p>
@@ -382,7 +385,7 @@
               <dl>
                 <div><dt>SocialIQA</dt><dd>z = +16.00</dd></div>
                 <div><dt>MMLU Social Sciences</dt><dd>z = &minus;7.31</dd></div>
-                <div><dt>ARC-Challenge</dt><dd>z = &minus;0.45</dd></div>
+                <div><dt>ARC-Challenge</dt><dd>z = &minus;1.92</dd></div>
                 <div><dt>MMLU STEM</dt><dd>z = &minus;5.75</dd></div>
               </dl>
               <span class="evidence-caveat">
@@ -440,15 +443,15 @@
             </p>
             <div class="finding-evidence">
               <p>
-                Paired difference d = &gamma;<sub>influence</sub> &minus; &gamma;<sub>random</sub>
-                (accuracy points; positive = influence-targeted damages more), n = 72 pairs per
-                benchmark, Wilcoxon p<sub>BH</sub>:
+                Paired difference d = &gamma;<sub>influence</sub> &minus; &gamma;<sub>random</sub>,
+                in percentage points of accuracy (positive = influence-targeted damages more),
+                n = 72 pairs per benchmark, Wilcoxon p<sub>BH</sub>:
               </p>
               <dl>
-                <div><dt>SocialIQA</dt><dd>median d = +0.0160, 95% CI [+0.013, +0.022], p<sub>BH</sub> &asymp; 1&times;10<sup>&minus;5</sup></dd></div>
-                <div><dt>MMLU STEM</dt><dd>median d = +0.0020, CI [&minus;0.0003, +0.0055], p<sub>BH</sub> = 0.028 (CI crosses zero)</dd></div>
-                <div><dt>MMLU Social Sciences</dt><dd>median d = +0.0017, CI [&minus;0.0018, +0.0042], p<sub>BH</sub> = 0.227 (n.s.)</dd></div>
-                <div><dt>ARC-Challenge</dt><dd>median d = &minus;0.0026, CI [&minus;0.0043, &minus;0.0009], p<sub>BH</sub> &gt; 0.99 (reversed)</dd></div>
+                <div><dt>SocialIQA</dt><dd>median d = +1.60 pp, 95% CI [+1.3, +2.2], p<sub>BH</sub> &asymp; 1&times;10<sup>&minus;5</sup></dd></div>
+                <div><dt>MMLU STEM</dt><dd>median d = +0.20 pp, CI [&minus;0.03, +0.55], p<sub>BH</sub> = 0.028 (CI crosses zero)</dd></div>
+                <div><dt>MMLU Social Sciences</dt><dd>median d = +0.17 pp, CI [&minus;0.18, +0.42], p<sub>BH</sub> = 0.227 (n.s.)</dd></div>
+                <div><dt>ARC-Challenge</dt><dd>median d = &minus;0.26 pp, CI [&minus;0.43, &minus;0.09], p<sub>BH</sub> &gt; 0.99 (reversed)</dd></div>
               </dl>
               <span class="evidence-caveat">
                 Unlearning validates load-bearing corpus regions in aggregate; it does not identify
@@ -480,25 +483,25 @@
         </div>
         <div class="bar-viz signflip-viz" data-bars data-claim-set="signature-bin">
           <div class="bar-head"><span>Benchmark</span><span>z-score</span></div>
-          <div class="bar-row" data-claim="socialiqa" data-max="16">
+          <div class="bar-row" data-claim="socialiqa" data-max="16" data-value="16">
             <span class="bar-label">SocialIQA</span>
             <span class="bar-track"><span class="bar-fill positive"></span></span>
-            <span class="bar-value"></span>
+            <span class="bar-value">+16.00</span>
           </div>
-          <div class="bar-row" data-claim="mmlu_social_sciences" data-max="16">
+          <div class="bar-row" data-claim="mmlu_social_sciences" data-max="16" data-value="-7.31">
             <span class="bar-label">MMLU Social Sciences</span>
             <span class="bar-track"><span class="bar-fill negative"></span></span>
-            <span class="bar-value"></span>
+            <span class="bar-value">&minus;7.31</span>
           </div>
-          <div class="bar-row" data-claim="arc_challenge" data-max="16">
+          <div class="bar-row" data-claim="arc_challenge" data-max="16" data-value="-1.92">
             <span class="bar-label">ARC-Challenge</span>
             <span class="bar-track"><span class="bar-fill negative"></span></span>
-            <span class="bar-value"></span>
+            <span class="bar-value">&minus;1.92</span>
           </div>
-          <div class="bar-row" data-claim="mmlu_stem" data-max="16">
+          <div class="bar-row" data-claim="mmlu_stem" data-max="16" data-value="-5.75">
             <span class="bar-label">MMLU STEM</span>
             <span class="bar-track"><span class="bar-fill negative"></span></span>
-            <span class="bar-value"></span>
+            <span class="bar-value">&minus;5.75</span>
           </div>
         </div>
       </article>
@@ -517,25 +520,25 @@
         </div>
         <div class="bar-viz unlearn-paired-viz" data-bars data-claim-set="unlearning">
           <div class="bar-head"><span>Benchmark</span><span>Paired &Delta; (pp)</span></div>
-          <div class="bar-row" data-claim="socialiqa" data-max="1.6">
+          <div class="bar-row" data-claim="socialiqa" data-max="1.6" data-value="1.6">
             <span class="bar-label">SocialIQA</span>
             <span class="bar-track"><span class="bar-fill positive"></span></span>
-            <span class="bar-value"></span>
+            <span class="bar-value">+1.60 &nbsp;<small>(p &asymp; 10<sup>&minus;5</sup>)</small></span>
           </div>
-          <div class="bar-row" data-claim="mmlu_stem" data-max="1.6">
+          <div class="bar-row" data-claim="mmlu_stem" data-max="1.6" data-value="0.2">
             <span class="bar-label">MMLU STEM</span>
             <span class="bar-track"><span class="bar-fill positive"></span></span>
-            <span class="bar-value"></span>
+            <span class="bar-value">+0.20 &nbsp;<small>(p = 0.028)</small></span>
           </div>
-          <div class="bar-row" data-claim="mmlu_social_sciences" data-max="1.6">
+          <div class="bar-row" data-claim="mmlu_social_sciences" data-max="1.6" data-value="0.17">
             <span class="bar-label">MMLU Soc. Sci.</span>
             <span class="bar-track"><span class="bar-fill positive"></span></span>
-            <span class="bar-value"></span>
+            <span class="bar-value">+0.17 &nbsp;<small>(p = 0.227, n.s.)</small></span>
           </div>
-          <div class="bar-row" data-claim="arc_challenge" data-max="1.6">
+          <div class="bar-row" data-claim="arc_challenge" data-max="1.6" data-value="-0.26">
             <span class="bar-label">ARC-Challenge</span>
             <span class="bar-track"><span class="bar-fill negative"></span></span>
-            <span class="bar-value"></span>
+            <span class="bar-value">&minus;0.26 &nbsp;<small>(p &gt; 0.99, reversed)</small></span>
           </div>
         </div>
       </article>
@@ -565,31 +568,39 @@
 
       <div class="evidence-grid">
         <figure class="paper-figure" data-aos="fade-up">
-          <picture>
-            <source srcset="./static/images/figures/fig_rq1_format_concentration.webp" type="image/webp">
-            <img loading="lazy" decoding="async" src="./static/images/figures/fig_rq1_format_concentration.png" alt="Format and topic concentration for benchmark influence profiles">
-          </picture>
+          <a href="./static/images/figures/fig_rq1_format_concentration.png" target="_blank" rel="noopener">
+            <picture>
+              <source srcset="./static/images/figures/fig_rq1_format_concentration.webp" type="image/webp">
+              <img loading="lazy" decoding="async" width="2900" height="1367" src="./static/images/figures/fig_rq1_format_concentration.png" alt="Format and topic concentration for benchmark influence profiles">
+            </picture>
+          </a>
           <figcaption>Format and topic marginals show SocialIQA separating from the social-knowledge and STEM tasks.</figcaption>
         </figure>
         <figure class="paper-figure" data-aos="fade-up">
-          <picture>
-            <source srcset="./static/images/figures/fig_influence_signed_2x2.webp" type="image/webp">
-            <img loading="lazy" decoding="async" src="./static/images/figures/fig_influence_signed_2x2.png" alt="Signed influence map across the 2 by 2 benchmark design">
-          </picture>
+          <a href="./static/images/figures/fig_influence_signed_2x2.png" target="_blank" rel="noopener">
+            <picture>
+              <source srcset="./static/images/figures/fig_influence_signed_2x2.webp" type="image/webp">
+              <img loading="lazy" decoding="async" width="2000" height="1600" src="./static/images/figures/fig_influence_signed_2x2.png" alt="Signed influence map across the 2 by 2 benchmark design">
+            </picture>
+          </a>
           <figcaption>Signed influence across the 2 by 2 benchmark design highlights capability-specific corpus regions.</figcaption>
         </figure>
         <figure class="paper-figure" data-aos="fade-up">
-          <picture>
-            <source srcset="./static/images/figures/unlearning_paired.webp" type="image/webp">
-            <img loading="lazy" decoding="async" src="./static/images/figures/unlearning_paired.png" alt="Paired unlearning validation results">
-          </picture>
+          <a href="./static/images/figures/unlearning_paired.png" target="_blank" rel="noopener">
+            <picture>
+              <source srcset="./static/images/figures/unlearning_paired.webp" type="image/webp">
+              <img loading="lazy" decoding="async" width="3479" height="1380" src="./static/images/figures/unlearning_paired.png" alt="Paired unlearning validation results">
+            </picture>
+          </a>
           <figcaption>Influence-targeted unlearning is compared against matched random controls.</figcaption>
         </figure>
         <figure class="paper-figure" data-aos="fade-up">
-          <picture>
-            <source srcset="./static/images/figures/fig_lex_cluster_composition.webp" type="image/webp">
-            <img loading="lazy" decoding="async" src="./static/images/figures/fig_lex_cluster_composition.png" alt="Lexical cluster composition for high-influence SocialIQA bins">
-          </picture>
+          <a href="./static/images/figures/fig_lex_cluster_composition.png" target="_blank" rel="noopener">
+            <picture>
+              <source srcset="./static/images/figures/fig_lex_cluster_composition.webp" type="image/webp">
+              <img loading="lazy" decoding="async" width="2520" height="1320" src="./static/images/figures/fig_lex_cluster_composition.png" alt="Lexical cluster composition for high-influence SocialIQA bins">
+            </picture>
+          </a>
           <figcaption>High-influence SocialIQA bins contain both conversational and documentation-like regimes.</figcaption>
         </figure>
       </div>
@@ -609,8 +620,34 @@
         <div class="models-table-wrap" data-aos="fade-up">
           <table class="models-table">
             <caption class="sr-only">Three headline attribution results re-run across three model corpora. OLMo3-7B is complete; Comma 7B and DCLM 7B are pending.</caption>
-            <thead id="models-head"></thead>
-            <tbody id="models-body"></tbody>
+            <thead id="models-head">
+              <tr>
+                <th scope="col">Metric</th>
+                <th scope="col">OLMo3-7B<span class="corpus">Dolma3</span><span class="status-badge status-done">Complete</span></th>
+                <th scope="col">Comma 7B<span class="corpus">Common Pile</span><span class="status-badge status-pending">In progress</span></th>
+                <th scope="col">DCLM 7B<span class="corpus">DCLM-Baseline</span><span class="status-badge status-pending">In progress</span></th>
+              </tr>
+            </thead>
+            <tbody id="models-body">
+              <tr>
+                <th scope="row" class="metric-cell">SocialIQA outlier signature<span class="detail">r-range vs the other 3 tasks</span></th>
+                <td class="value-cell">r = 0.06&ndash;0.22<span class="detail">vs the other three tasks (r = 0.76&ndash;0.86 among themselves)</span></td>
+                <td class="value-cell value-pending col-pending">In progress<span class="detail">results pending</span></td>
+                <td class="value-cell value-pending col-pending">In progress<span class="detail">results pending</span></td>
+              </tr>
+              <tr>
+                <th scope="row" class="metric-cell">Signature-bin sign flip<span class="detail">signed z, Literature &times; Customer Support</span></th>
+                <td class="value-cell">SocialIQA +16.00 &middot; MMLU Soc. Sci. &minus;7.31 &middot; ARC-Challenge &minus;1.92 &middot; MMLU STEM &minus;5.75<span class="detail">Literature &times; Customer Support</span></td>
+                <td class="value-cell value-pending col-pending">In progress<span class="detail">results pending</span></td>
+                <td class="value-cell value-pending col-pending">In progress<span class="detail">results pending</span></td>
+              </tr>
+              <tr>
+                <th scope="row" class="metric-cell">SocialIQA unlearning damage<span class="detail">influence &minus; random, paired</span></th>
+                <td class="value-cell">+1.60 pp (p &asymp; 10<sup>&minus;5</sup>)<span class="detail">n = 72 paired forget sets</span></td>
+                <td class="value-cell value-pending col-pending">In progress<span class="detail">results pending</span></td>
+                <td class="value-cell value-pending col-pending">In progress<span class="detail">results pending</span></td>
+              </tr>
+            </tbody>
           </table>
         </div>
         <p class="models-note">

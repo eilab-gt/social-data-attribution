@@ -400,7 +400,7 @@
 .bar-head,
 .bar-row {
   display: grid;
-  grid-template-columns: minmax(150px, 0.75fr) minmax(180px, 1.5fr) 82px;
+  grid-template-columns: minmax(150px, 0.75fr) minmax(180px, 1.5fr) minmax(100px, auto);
   gap: 0.8rem;
   align-items: center;
 }
@@ -428,6 +428,7 @@
   font-variant-numeric: tabular-nums;
   font-weight: 850;
   text-align: right;
+  white-space: nowrap;
 }
 
 .bar-track {
@@ -625,4 +626,33 @@
   .fig1-fallback {
     display: block;
   }
+}
+
+
+/* Benchmark-tinted bar fills (paper palette): color encodes the benchmark,
+   fill direction already encodes the sign. Higher specificity than
+   .bar-fill.positive / .bar-fill.negative, so it wins. */
+.bar-row[data-claim="socialiqa"] .bar-fill {
+  background: #762a83;
+}
+
+.bar-row[data-claim="mmlu_social_sciences"] .bar-fill {
+  background: #8c6d1f;
+}
+
+.bar-row[data-claim="arc_challenge"] .bar-fill {
+  background: #a14f00;
+}
+
+.bar-row[data-claim="mmlu_stem"] .bar-fill {
+  background: #1b7837;
+}
+
+
+/* Long p-value annotations drop to a second line under the number instead
+   of overflowing the card edge. */
+.bar-value small {
+  display: block;
+  font-weight: 600;
+  white-space: normal;
 }

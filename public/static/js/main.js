@@ -76,21 +76,21 @@ import { SIGNATURE_BIN, BENCHMARKS, UNLEARNING, MODELS } from "./animations/soci
 
   /* Format a signed z-score for display, e.g. +16.00, -7.31. */
   function fmtZ(z) {
-    var s = z >= 0 ? "+" : "\u2212"; // U+2212 minus sign
+    var s = z >= 0 ? "+" : "−"; // U+2212 minus sign
     return s + Math.abs(z).toFixed(2);
   }
 
   /* Format an accuracy-fraction delta as percentage points, e.g. +1.60. */
   function fmtPp(frac) {
     var pp = frac * 100;
-    var s = pp >= 0 ? "+" : "\u2212";
+    var s = pp >= 0 ? "+" : "−";
     return s + Math.abs(pp).toFixed(2);
   }
 
   /* Render a p-value compactly for the unlearning bar annotations. */
   function fmtP(p) {
     if (typeof p === "string") {
-      if (p.startsWith("1.0e-")) return "p \u2248 10<sup>\u2212" + p.slice(5) + "</sup>";
+      if (p.startsWith("1.0e-")) return "p ≈ 10<sup>−" + p.slice(5) + "</sup>";
       if (p.startsWith(">")) return "p > 0.99, reversed";
     }
     if (p > 0.05) return "p = " + p + ", n.s.";
@@ -99,7 +99,9 @@ import { SIGNATURE_BIN, BENCHMARKS, UNLEARNING, MODELS } from "./animations/soci
 
   /* Populate bar rows from the shared data module so numbers live in one place.
      Each row carries data-claim="<benchmark key>" and lives under a
-     [data-claim-set] container naming the claim set. */
+     [data-claim-set] container naming the claim set. The markup also ships
+     static values as a no-JS fallback; this overwrites them with the same
+     numbers from the module. */
   function initClaimBars() {
     var sets = {
       "signature-bin": function (key) {
@@ -177,14 +179,15 @@ import { SIGNATURE_BIN, BENCHMARKS, UNLEARNING, MODELS } from "./animations/soci
 
   /* Render the "Results across models" comparison table from MODELS.
      Rows = the three headline metrics; columns = models. Pending models
-     render an honest placeholder cell, never a fabricated number. */
+     render an honest placeholder cell, never a fabricated number. The markup
+     ships a static copy as a no-JS fallback; this re-renders from the module. */
   function fmtSigned(z) {
-    return (z >= 0 ? "+" : "\u2212") + Math.abs(z).toFixed(2);
+    return (z >= 0 ? "+" : "−") + Math.abs(z).toFixed(2);
   }
 
   function fmtPShort(p) {
     if (typeof p === "string") {
-      if (p.startsWith("1.0e-")) return "p \u2248 10<sup>\u2212" + p.slice(5) + "</sup>";
+      if (p.startsWith("1.0e-")) return "p ≈ 10<sup>−" + p.slice(5) + "</sup>";
       if (p.startsWith(">")) return "p > 0.99";
     }
     if (p > 0.05) return "p = " + p + " (n.s.)";
@@ -236,7 +239,7 @@ import { SIGNATURE_BIN, BENCHMARKS, UNLEARNING, MODELS } from "./animations/soci
         render: function (m) {
           if (m.status !== "done") return null;
           var r = m.socialiqaCorrelation.range;
-          return "r = " + r[0].toFixed(2) + "\u2013" + r[1].toFixed(2) +
+          return "r = " + r[0].toFixed(2) + "–" + r[1].toFixed(2) +
             '<span class="detail">' + esc(m.socialiqaCorrelation.note) + '</span>';
         }
       },
@@ -254,7 +257,7 @@ import { SIGNATURE_BIN, BENCHMARKS, UNLEARNING, MODELS } from "./animations/soci
       },
       {
         label: "SocialIQA unlearning damage",
-        detail: "influence \u2212 random, paired",
+        detail: "influence − random, paired",
         render: function (m) {
           if (m.status !== "done") return null;
           var u = m.socialiqaUnlearning;
@@ -319,6 +322,13 @@ import { SIGNATURE_BIN, BENCHMARKS, UNLEARNING, MODELS } from "./animations/soci
     if (window.AOS) {
       var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       window.AOS.init({ once: true, duration: 650, easing: "ease-out-cubic", disable: reduce });
+    } else {
+      /* AOS failed to load (CDN blocked or offline): its stylesheet hides
+         [data-aos] elements, so strip the attributes to reveal everything. */
+      document.querySelectorAll("[data-aos]").forEach(function (el) {
+        el.removeAttribute("data-aos");
+        el.removeAttribute("data-aos-delay");
+      });
     }
   });
 })();
